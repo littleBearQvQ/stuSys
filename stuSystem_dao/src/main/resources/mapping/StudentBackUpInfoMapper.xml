@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.StudentBackUpInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.StudentBackUpInfo" autoMapping="true">
+    <id column="studentid" property="studentid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    studentID, studentNo, studentName, studentSkill, studentLoves, studentBornDate, studentBackUpDate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from studentbackupinfo
+    where studentID = #{studentid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from studentbackupinfo
+    where studentID = #{studentid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.StudentBackUpInfo" >
+    insert into studentbackupinfo (studentID, studentNo, studentName, 
+      studentSkill, studentLoves, studentBornDate, 
+      studentBackUpDate)
+    values (#{studentid,jdbcType=INTEGER}, #{studentno,jdbcType=VARCHAR}, #{studentname,jdbcType=VARCHAR}, 
+      #{studentskill,jdbcType=VARCHAR}, #{studentloves,jdbcType=VARCHAR}, #{studentborndate,jdbcType=DATE}, 
+      #{studentbackupdate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.StudentBackUpInfo" >
+    insert into studentbackupinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="studentid != null" >
+        studentID,
+      </if>
+      <if test="studentno != null" >
+        studentNo,
+      </if>
+      <if test="studentname != null" >
+        studentName,
+      </if>
+      <if test="studentskill != null" >
+        studentSkill,
+      </if>
+      <if test="studentloves != null" >
+        studentLoves,
+      </if>
+      <if test="studentborndate != null" >
+        studentBornDate,
+      </if>
+      <if test="studentbackupdate != null" >
+        studentBackUpDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="studentid != null" >
+        #{studentid,jdbcType=INTEGER},
+      </if>
+      <if test="studentno != null" >
+        #{studentno,jdbcType=VARCHAR},
+      </if>
+      <if test="studentname != null" >
+        #{studentname,jdbcType=VARCHAR},
+      </if>
+      <if test="studentskill != null" >
+        #{studentskill,jdbcType=VARCHAR},
+      </if>
+      <if test="studentloves != null" >
+        #{studentloves,jdbcType=VARCHAR},
+      </if>
+      <if test="studentborndate != null" >
+        #{studentborndate,jdbcType=DATE},
+      </if>
+      <if test="studentbackupdate != null" >
+        #{studentbackupdate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.StudentBackUpInfo" >
+    update studentbackupinfo
+    <set >
+      <if test="studentno != null" >
+        studentNo = #{studentno,jdbcType=VARCHAR},
+      </if>
+      <if test="studentname != null" >
+        studentName = #{studentname,jdbcType=VARCHAR},
+      </if>
+      <if test="studentskill != null" >
+        studentSkill = #{studentskill,jdbcType=VARCHAR},
+      </if>
+      <if test="studentloves != null" >
+        studentLoves = #{studentloves,jdbcType=VARCHAR},
+      </if>
+      <if test="studentborndate != null" >
+        studentBornDate = #{studentborndate,jdbcType=DATE},
+      </if>
+      <if test="studentbackupdate != null" >
+        studentBackUpDate = #{studentbackupdate,jdbcType=DATE},
+      </if>
+    </set>
+    where studentID = #{studentid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.StudentBackUpInfo" >
+    update studentbackupinfo
+    set studentNo = #{studentno,jdbcType=VARCHAR},
+      studentName = #{studentname,jdbcType=VARCHAR},
+      studentSkill = #{studentskill,jdbcType=VARCHAR},
+      studentLoves = #{studentloves,jdbcType=VARCHAR},
+      studentBornDate = #{studentborndate,jdbcType=DATE},
+      studentBackUpDate = #{studentbackupdate,jdbcType=DATE}
+    where studentID = #{studentid,jdbcType=INTEGER}
+  </update>
+</mapper>
